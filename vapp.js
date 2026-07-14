@@ -42,7 +42,6 @@ app.post("/view-volunteer", async (req, res) => {
     res.json(volunteers)
 })
 
-app.listen(3000, () => {
 app.post("/add-volunteer", async (req,res) => {
     await Volunteer.create(req.body)
     res.json({"status" : "success"})
