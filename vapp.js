@@ -1,8 +1,8 @@
-const express=require("express")
-const mongoose=require("mongoose")
-const cors=require("cors")
+const express = require("express")
+const mongoose = require("mongoose")
+const cors = require("cors")
 
-const app=express()
+const app = express()
 app.use(cors())
 app.use(express.json())
 
@@ -37,6 +37,12 @@ app.get("/test", (req, res) => {
     res.send("hello")
 })
 
+app.post("/view-volunteer", async (req, res) => {
+    const volunteers = await Volunteer.find()
+    res.json(volunteers)
+})
+
+app.listen(3000, () => {
 app.post("/add-volunteer", async (req,res) => {
     await Volunteer.create(req.body)
     res.json({"status" : "success"})
