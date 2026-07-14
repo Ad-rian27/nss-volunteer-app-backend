@@ -13,9 +13,9 @@ mongoose.connect("mongodb+srv://adrian:adrian123@cluster0.veegpvo.mongodb.net/vd
 ).catch(
     (err) => (
         console.log(err)
-    ))
+))
 
-const Volunteer = mongoose.model("Volunteers", new mongoose.Schema(
+const Volunteer=mongoose.model("Volunteers", new mongoose.Schema(
     {
         volunteerId: String,
         fullName: String,
@@ -43,5 +43,11 @@ app.post("/view-volunteer", async (req, res) => {
 })
 
 app.listen(3000, () => {
+app.post("/add-volunteer", async (req,res) => {
+    await Volunteer.create(req.body)
+    res.json({"status" : "success"})
+})
+
+app.listen(3000,() => {
     console.log("Server started")
 })
